@@ -3,18 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import AuthDropdown from "./AuthDropdown";
-
-const navigation = [
-    { name: "Главная", path: "/" },
-    { name: "Каталог", path: "/catalog" },
-    { name: "Регистрация", path: "/register" },
-    { name: "Вход", path: "/login" },
-];
+import { navigation } from '../../constants/navigation'
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
-        <header className="bg-surface text-text sticky top-0 z-50 border-b border-primary">
+        <header className="bg-surface text-text sticky top-0 z-50 border-b border-border">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex items-center justify-between h-16 lg:h-20">
                     <Link to="/" className="flex items-center gap-3">
