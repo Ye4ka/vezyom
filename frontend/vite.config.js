@@ -10,6 +10,7 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  base: '/vezyom/',
   server: {
     host: '127.0.0.1',
     port: 5173,

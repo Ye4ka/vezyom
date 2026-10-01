@@ -9,7 +9,7 @@ import Restaurant from './pages/Restaurant'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/vezyom">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

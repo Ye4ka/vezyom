@@ -8,7 +8,7 @@ const AuthDropdown = () => {
             align="right"
             trigger={({ open }) => (
                 <button
-                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
+                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors cursor-pointer ${
                         open 
                             ? 'border-primary bg-primary/10' 
                             : 'border-border hover:border-primary'
