@@ -43,7 +43,7 @@ export default function PromoSlider() {
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
-            className="relative h-72 sm:h-96 md:h-[28rem] rounded-3xl overflow-hidden"
+            className="relative h-72 sm:h-96 md:h-112 rounded-3xl overflow-hidden"
         >
             {promos.map((promo, index) => (
                 <div
