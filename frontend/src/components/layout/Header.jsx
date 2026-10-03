@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import AuthDropdown from "./AuthDropdown";
 import { navigation } from '../../constants/navigation'
+import ThemeToggle from "../ui/ThemeToggle"
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,6 +34,7 @@ export default function Header() {
                     </nav>
 
                     <div className="flex items-center gap-3">
+                        <ThemeToggle />
                         <AuthDropdown />
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
