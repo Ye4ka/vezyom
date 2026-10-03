@@ -68,8 +68,8 @@ export default function Restaurant() {
                     Назад в каталог
                 </Link>
 
-                <div className="flex items-center gap-4">
-                    <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-primary/10 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-primary/10 flex items-center justify-center">
                         {restaurant.img ? (
                             <img src={restaurant.img} alt={restaurant.name} className="w-full h-full object-cover" />
                         ) : (
@@ -78,24 +78,26 @@ export default function Restaurant() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-bold">{restaurant.name}</h1>
-                        <div className="flex items-center gap-3 mt-1 text-text-muted flex-wrap">
-                            <span>{restaurant.cuisine}</span>
-                            <span>•</span>
-                            <span className="flex items-center gap-1">
+                        <div className="flex items-center gap-x-3 gap-y-1 mt-1 text-text-muted flex-wrap">
+                            <span className="after:content-['•'] after:ml-3 last:after:content-none">
+                                {restaurant.cuisine}
+                            </span>
+                            <span className="after:content-['•'] after:ml-3 last:after:content-none flex items-center gap-1">
                                 <img src={Star} alt="" className="w-4 h-4" />
                                 {restaurant.rating}
                             </span>
-                            <span>•</span>
                             <span>{restaurant.deliveryTime}</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-3 text-text-muted text-sm flex-wrap">
-                    <span>{restaurant.address}</span>
-                    <span>•</span>
-                    <span>{restaurant.workHours}</span>
-                    <span>•</span>
+                <div className="flex items-center gap-x-3 gap-y-1 mt-3 text-text-muted text-sm flex-wrap">
+                    <span className="after:content-['•'] after:ml-3 last:after:content-none">
+                        {restaurant.address}
+                    </span>
+                    <span className="after:content-['•'] after:ml-3 last:after:content-none">
+                        {restaurant.workHours}
+                    </span>
                     <span>Мин. заказ {restaurant.minOrder} ₽</span>
                 </div>
 
