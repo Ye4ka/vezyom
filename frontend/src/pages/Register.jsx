@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOff, CheckCircle } from "lucide-react"
+import { useAuth } from "../context/AuthContext"
 
 const initialValues = {
     fullName: "",
@@ -35,6 +36,7 @@ function validateField(name, value, allValues) {
 
 export default function Register() {
     const navigate = useNavigate()
+    const { login } = useAuth()
     const [values, setValues] = useState(initialValues)
     const [errors, setErrors] = useState({})
     const [touched, setTouched] = useState({})
@@ -73,6 +75,7 @@ export default function Register() {
         const hasErrors = Object.values(allErrors).some(Boolean)
         if (hasErrors) return
 
+        login({ name: values.fullName })
         setSubmitted(true)
         setTimeout(() => navigate("/login"), 1500)
     }

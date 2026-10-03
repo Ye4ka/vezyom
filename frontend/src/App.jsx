@@ -6,6 +6,7 @@ import Catalog from './pages/Catalog'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Restaurant from './pages/Restaurant'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="catalog/:restaurantId" element={<Restaurant />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
