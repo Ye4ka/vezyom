@@ -6,10 +6,12 @@ import Catalog from './pages/Catalog'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Restaurant from './pages/Restaurant'
+import Profile from './pages/Profile'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/vezyom">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -17,6 +19,8 @@ function App() {
           <Route path="catalog/:restaurantId" element={<Restaurant />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
