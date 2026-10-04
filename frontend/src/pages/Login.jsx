@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOff, CheckCircle } from "lucide-react"
 import { useAuth } from "../context/AuthContext"
+import { usePageTitle } from "../hooks/usePageTitle"
 
 const initialValues = {
     identifier: "",
@@ -20,6 +21,7 @@ function validateField(name, value) {
 }
 
 export default function Login() {
+    usePageTitle("Вход")
     const navigate = useNavigate()
     const { login } = useAuth()
     const [values, setValues] = useState(initialValues)

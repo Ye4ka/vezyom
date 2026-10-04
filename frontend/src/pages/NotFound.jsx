@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import { SearchX } from "lucide-react"
+import { usePageTitle } from "../hooks/usePageTitle"
 
 export default function NotFound() {
+    usePageTitle("Страница не найдена")
     return (
         <div className="max-w-md mx-auto px-4 mt-24 pb-20 text-center">
             <SearchX className="w-16 h-16 text-text-muted mx-auto mb-4" />

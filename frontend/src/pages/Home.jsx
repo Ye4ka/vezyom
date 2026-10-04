@@ -4,6 +4,7 @@ import { useRef } from "react"
 import RestaurantCard from "../components/ui/RestaurantCard"
 import { restaurants } from "../constants/restaurants"
 import PromoSlider from "../components/ui/PromoSlider"
+import { usePageTitle } from "../hooks/usePageTitle"
 
 const steps = [
     { icon: Search, title: "Выбери ресторан", text: "Каталог заведений рядом с тобой" },
@@ -12,6 +13,7 @@ const steps = [
 ]
 
 export default function Home() {
+    usePageTitle("Главная")
     const scrollRef = useRef(null)
     const scroll = (direction) => {
         scrollRef.current.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' })

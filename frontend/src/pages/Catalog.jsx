@@ -2,10 +2,12 @@ import { useState } from "react"
 import { Search } from "lucide-react"
 import { restaurants } from "../constants/restaurants"
 import RestaurantCard from "../components/ui/RestaurantCard"
+import { usePageTitle } from "../hooks/usePageTitle"
 
 const cuisines = ["Все", ...new Set(restaurants.map(r => r.cuisine))]
 
 export default function Catalog() {
+    usePageTitle("Рестораны")
     const [query, setQuery] = useState("")
     const [activeCuisine, setActiveCuisine] = useState("Все")
     const [sortBy, setSortBy] = useState("default")

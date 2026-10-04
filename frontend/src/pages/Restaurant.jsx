@@ -4,6 +4,7 @@ import { ChevronLeft, Search } from "lucide-react"
 import { restaurants } from "../constants/restaurants"
 import DishCard from "../components/ui/DishCard"
 import Star from "../assets/icon/star.svg"
+import { usePageTitle } from "../hooks/usePageTitle"
 
 function pluralizeItems(n) {
     const mod10 = n % 10
@@ -15,6 +16,7 @@ function pluralizeItems(n) {
 }
 
 export default function Restaurant() {
+    usePageTitle(restaurant ? restaurant.name : "Ресторан не найден")
     const { restaurantId } = useParams()
     const restaurant = restaurants.find(r => r.id === Number(restaurantId))
 

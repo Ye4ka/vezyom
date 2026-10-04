@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import { User } from "lucide-react"
 import { useAuth } from "../context/AuthContext"
+import { usePageTitle } from "../hooks/usePageTitle"
 
 export default function Profile() {
+    usePageTitle("Личный кабинет")
     const { user } = useAuth()
 
     if (!user) {
