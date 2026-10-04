@@ -45,31 +45,33 @@ export default function PromoSlider() {
             onTouchEnd={onTouchEnd}
             className="relative h-72 sm:h-96 md:h-112 rounded-3xl overflow-hidden"
         >
-            {promos.map((promo, index) => (
-                <div
-                    key={promo.id}
-                    className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-                        }`}
-                >
-                    <img
-                        src={promo.img}
-                        alt=""
-                        className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40" />
+            <div
+                className="flex h-full transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+                {promos.map((promo) => (
+                    <div key={promo.id} className="relative w-full h-full shrink-0">
+                        <img
+                            src={promo.img}
+                            alt=""
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40" />
 
-                    <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:pl-20 sm:pr-12 text-white">
-                        <h2 className="text-2xl sm:text-3xl font-bold mb-2">{promo.title}</h2>
-                        <p className="text-white/90 mb-4 max-w-md">{promo.subtitle}</p>
-                        <Link
-                            to={promo.to}
-                            className="self-start bg-white text-text px-6 py-2 rounded-full font-semibold hover:bg-white/90 transition-colors"
-                        >
-                            {promo.cta}
-                        </Link>
+                        <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:pl-20 sm:pr-12 text-white">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-2">{promo.title}</h2>
+                            <p className="text-white/90 mb-4 max-w-md">{promo.subtitle}</p>
+                            <Link
+                                to={promo.to}
+                                className="self-start bg-white text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-white/90 transition-colors"
+                            >
+                                {promo.cta}
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
+
             <button
                 onClick={goToPrev}
                 aria-label="Предыдущий слайд"
@@ -91,8 +93,9 @@ export default function PromoSlider() {
                         key={index}
                         onClick={() => setCurrentSlide(index)}
                         aria-label={`Перейти к слайду ${index + 1}`}
-                        className={`w-2.5 h-2.5 rounded-full transition-colors ${index === currentSlide ? "bg-white" : "bg-white/40"
-                            }`}
+                        className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                            index === currentSlide ? "bg-white" : "bg-white/40"
+                        }`}
                     />
                 ))}
             </div>
