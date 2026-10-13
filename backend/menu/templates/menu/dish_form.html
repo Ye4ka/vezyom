@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><title>Новое блюдо — Везём</title></head>
+<head><meta charset="utf-8"><title>Блюдо — Везём</title></head>
 <body>
-    <h1>Новое блюдо</h1>
+    <h1>{% if dish %}Редактирование: {{ dish.name }}{% else %}Новое блюдо{% endif %}</h1>
     <form method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Сохранить</button>
-        <a href="{% url 'menu:dish_list' %}">Отмена</a>
+        <a href="{% if dish %}{% url 'menu:dish_detail' dish.pk %}{% else %}{% url 'menu:dish_list' %}{% endif %}">Отмена</a>
     </form>
 </body>
 </html>

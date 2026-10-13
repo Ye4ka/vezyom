@@ -10,5 +10,9 @@
     {% if dish.weight %}<p>Вес: {{ dish.weight }} г</p>{% endif %}
     {% if dish.description %}<p>{{ dish.description }}</p>{% endif %}
     <p>Добавлено: {{ dish.created_at|date:"d.m.Y H:i" }}</p>
+    <p>
+        <a href="{% url 'menu:dish_update' dish.pk %}">Изменить</a> |
+        <a href="{% url 'menu:dish_delete' dish.pk %}">Удалить</a>
+    </p>
 </body>
 </html>
