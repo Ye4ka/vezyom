@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Каталог — Везём</title>
+    <title>Каталог - Везём</title>
 </head>
 <body>
     {% if messages %}
@@ -33,7 +33,7 @@
         {% for dish in dishes %}
             <li>
                 <a href="{% url 'menu:dish_detail' dish.pk %}">{{ dish.name }}</a>
-                — {{ dish.price }} ₽
+                - {{ dish.price }} ₽
                 ({{ dish.restaurant.name }}, {{ dish.category.name }})
             </li>
         {% empty %}
