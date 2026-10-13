@@ -1,0 +1,21 @@
+[
+    {"model": "menu.category", "pk": 1, "fields": {"name": "Бургеры"}},
+    {"model": "menu.category", "pk": 2, "fields": {"name": "Суши и роллы"}},
+    {"model": "menu.category", "pk": 3, "fields": {"name": "Пицца"}},
+    {"model": "menu.category", "pk": 4, "fields": {"name": "Напитки"}},
+    
+    {"model": "menu.restaurant", "pk": 1, "fields": {"name": "Бургер Крут", "address": "ул. Гончарова, 15", "rating": "4.6", "delivery_time": 30}},
+    {"model": "menu.restaurant", "pk": 2, "fields": {"name": "Киото", "address": "ул. Минаева, 48", "rating": "4.8", "delivery_time": 45}},
+    {"model": "menu.restaurant", "pk": 3, "fields": {"name": "Гранж", "address": "ул. Ленина, 92", "rating": "4.5", "delivery_time": 40}},
+    
+    {"model": "menu.dish", "pk": 1, "fields": {"restaurant": 1, "category": 1, "name": "Чизбургер", "description": "Говяжья котлета, сыр чеддер, маринованный огурец, фирменный соус", "price": "249.00", "weight": 220, "created_at": "2026-10-14T10:00:00Z"}},
+    {"model": "menu.dish", "pk": 2, "fields": {"restaurant": 1, "category": 1, "name": "Двойной бургер", "description": "Две котлеты, двойной сыр, бекон", "price": "349.00", "weight": 320, "created_at": "2026-10-14T10:01:00Z"}},
+    {"model": "menu.dish", "pk": 3, "fields": {"restaurant": 1, "category": 4, "name": "Лимонад домашний", "description": "Лимон, мята, содовая", "price": "129.00", "weight": 400, "created_at": "2026-10-14T10:02:00Z"}},
+    {"model": "menu.dish", "pk": 4, "fields": {"restaurant": 2, "category": 2, "name": "Ролл Филадельфия", "description": "Лосось, сливочный сыр, огурец, рис", "price": "429.00", "weight": 240, "created_at": "2026-10-14T10:03:00Z"}},
+    {"model": "menu.dish", "pk": 5, "fields": {"restaurant": 2, "category": 2, "name": "Ролл Калифорния", "description": "Краб, авокадо, огурец, икра тобико", "price": "389.00", "weight": 230, "created_at": "2026-10-14T10:04:00Z"}},
+    {"model": "menu.dish", "pk": 6, "fields": {"restaurant": 2, "category": 4, "name": "Зелёный чай", "description": "Чайник на двоих", "price": "159.00", "weight": 500, "created_at": "2026-10-14T10:05:00Z"}},
+    {"model": "menu.dish", "pk": 7, "fields": {"restaurant": 3, "category": 3, "name": "Маргарита", "description": "Томатный соус, моцарелла, базилик", "price": "459.00", "weight": 450, "created_at": "2026-10-14T10:06:00Z"}},
+    {"model": "menu.dish", "pk": 8, "fields": {"restaurant": 3, "category": 3, "name": "Пепперони", "description": "Пепперони, моцарелла, томатный соус", "price": "529.00", "weight": 480, "created_at": "2026-10-14T10:07:00Z"}},
+    {"model": "menu.dish", "pk": 9, "fields": {"restaurant": 3, "category": 1, "name": "Бургер с курицей", "description": "Куриное филе, салат, соус цезарь", "price": "299.00", "weight": 250, "created_at": "2026-10-14T10:08:00Z"}},
+    {"model": "menu.dish", "pk": 10, "fields": {"restaurant": 3, "category": 4, "name": "Морс клюквенный", "description": "Домашний, без сахара", "price": "119.00", "weight": 300, "created_at": "2026-10-14T10:09:00Z"}}
+]
