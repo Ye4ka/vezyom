@@ -16,9 +16,10 @@ function pluralizeItems(n) {
 }
 
 export default function Restaurant() {
-    usePageTitle(restaurant ? restaurant.name : "Ресторан не найден")
     const { restaurantId } = useParams()
     const restaurant = restaurants.find(r => r.id === Number(restaurantId))
+    
+    usePageTitle(restaurant ? restaurant.name : "Ресторан не найден")
 
     const [cart, setCart] = useState({})
     const [query, setQuery] = useState("")

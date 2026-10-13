@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Каталог — Везём</title></head>
+<body>
+    <h1>Каталог блюд</h1>
+    <ul>
+        {% for dish in dishes %}
+        <li>{{ dish.name }} — {{ dish.price }} ₽ ({{ dish.restaurant.name }}, {{ dish.category.name }})</li>
+            {% empty %}
+        <li>Пока нет блюд</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
