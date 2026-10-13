@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>{{ dish.name }} — Везём</title></head>
+<body>
+    <a href="{% url 'menu:dish_list' %}">← К каталогу</a>
+    <h1>{{ dish.name }}</h1>
+    <p>Ресторан: {{ dish.restaurant.name }}</p>
+    <p>Категория: {{ dish.category.name }}</p>
+    <p>Цена: {{ dish.price }} ₽</p>
+    {% if dish.weight %}<p>Вес: {{ dish.weight }} г</p>{% endif %}
+    {% if dish.description %}<p>{{ dish.description }}</p>{% endif %}
+    <p>Добавлено: {{ dish.created_at|date:"d.m.Y H:i" }}</p>
+</body>
+</html>

@@ -1,13 +1,23 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><title>Каталог — Везём</title></head>
+<head>
+    <meta charset="utf-8">
+    <title>Каталог — Везём</title>
+</head>
 <body>
     <h1>Каталог блюд</h1>
+
+    <p><a href="{% url 'menu:dish_create' %}">+ Добавить блюдо</a></p>
+
     <ul>
         {% for dish in dishes %}
-        <li>{{ dish.name }} — {{ dish.price }} ₽ ({{ dish.restaurant.name }}, {{ dish.category.name }})</li>
-            {% empty %}
-        <li>Пока нет блюд</li>
+            <li>
+                <a href="{% url 'menu:dish_detail' dish.pk %}">{{ dish.name }}</a>
+                — {{ dish.price }} ₽
+                ({{ dish.restaurant.name }}, {{ dish.category.name }})
+            </li>
+        {% empty %}
+            <li>Пока нет блюд</li>
         {% endfor %}
     </ul>
 </body>
