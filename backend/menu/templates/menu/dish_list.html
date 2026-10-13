@@ -5,9 +5,29 @@
     <title>Каталог — Везём</title>
 </head>
 <body>
+    {% if messages %}
+        <ul>
+            {% for m in messages %}
+                <li>{{ m }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <h1>Каталог блюд</h1>
 
     <p><a href="{% url 'menu:dish_create' %}">+ Добавить блюдо</a></p>
+
+    <form method="get">
+        <input type="text" name="q" value="{{ q }}" placeholder="Поиск по названию">
+        <select name="category">
+            <option value="">Все категории</option>
+            {% for c in categories %}
+                <option value="{{ c.pk }}" {% if selected_category == c.pk|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Найти</button>
+        <a href="{% url 'menu:dish_list' %}">Сбросить</a>
+    </form>
 
     <ul>
         {% for dish in dishes %}
@@ -17,7 +37,7 @@
                 ({{ dish.restaurant.name }}, {{ dish.category.name }})
             </li>
         {% empty %}
-            <li>Пока нет блюд</li>
+            <li>Ничего не найдено</li>
         {% endfor %}
     </ul>
 </body>
