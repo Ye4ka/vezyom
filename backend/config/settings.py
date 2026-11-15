@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'menu',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -104,3 +105,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'menu:dish_list'
+LOGOUT_REDIRECT_URL = 'menu:dish_list'
