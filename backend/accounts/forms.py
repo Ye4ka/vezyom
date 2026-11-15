@@ -41,3 +41,7 @@ class RegisterForm(forms.Form):
         if p1 and p2 and p1 != p2:
             self.add_error('password2', 'Пароли не совпадают.')
         return cleaned
+
+class LoginForm(forms.Form):
+    identifier = forms.CharField(label='Логин или email')
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
