@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Новый заказ — Везём</title></head>
+<body>
+    {% include 'accounts/_nav.html' %}
+    <h1>Заказ в «{{ restaurant.name }}»</h1>
+
+    {% if errors %}
+        <ul style="color:red">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <tr><th>Блюдо</th><th>Цена</th><th>Кол-во</th></tr>
+            {% for d in dishes %}
+                <tr>
+                    <td>{{ d.name }}</td>
+                    <td>{{ d.price }} ₽</td>
+                    <td><input type="text" name="qty_{{ d.pk }}" value="{{ d.qty|default:'' }}" size="3"></td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="3">У ресторана пока нет блюд.</td></tr>
+            {% endfor %}
+        </table>
+        <p>Адрес доставки: <input type="text" name="address" value="{{ address }}" size="40"></p>
+        <p>Комментарий:<br><textarea name="comment" rows="3" cols="40">{{ comment }}</textarea></p>
+        <button type="submit">Оформить заказ</button>
+        <a href="{% url 'orders:order_list' %}">Отмена</a>
+    </form>
+</body>
+</html>

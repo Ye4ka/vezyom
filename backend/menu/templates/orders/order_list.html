@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Мои заказы — Везём</title></head>
+<body>
+    {% include 'accounts/_nav.html' %}
+    <h1>Мои заказы</h1>
+    <p><a href="{% url 'orders:order_create' %}">+ Новый заказ</a></p>
+    <ul>
+        {% for o in orders %}
+        <li>
+            <a href="{% url 'orders:order_detail' o.pk %}">Заказ №{{ o.pk }}</a>
+            — {{ o.restaurant.name }}, {{ o.total }} ₽,
+            {{ o.get_status_display }}, {{ o.created_at|date:"d.m.Y H:i" }}
+        </li>
+        {% empty %}
+        <li>У вас пока нет заказов.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

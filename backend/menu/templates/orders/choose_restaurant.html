@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Новый заказ — Везём</title></head>
+<body>
+    {% include 'accounts/_nav.html' %}
+    <h1>Новый заказ: выберите ресторан</h1>
+    <ul>
+        {% for r in restaurants %}
+            <li><a href="{% url 'orders:order_create' %}?restaurant={{ r.pk }}">{{ r.name }}</a>
+                (доставка ~{{ r.delivery_time }} мин)</li>
+            {% empty %}
+            <li>Рестораны пока не добавлены.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

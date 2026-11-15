@@ -1,6 +1,7 @@
 <nav>
     <a href="{% url 'menu:dish_list' %}">Каталог</a> |
     {% if user.is_authenticated %}
+    <a href="{% url 'orders:order_list' %}">Мои заказы</a> |
         Вы вошли как <b>{{ user.profile.full_name|default:user.username }}</b>
         <form method="post" action="{% url 'accounts:logout' %}" style="display:inline">
             {% csrf_token %}

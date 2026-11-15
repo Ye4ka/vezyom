@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Заказ №{{ order.pk }} — Везём</title></head>
+<body>
+    {% include 'accounts/_nav.html' %}
+    <a href="{% url 'orders:order_list' %}">← Мои заказы</a>
+    <h1>Заказ №{{ order.pk }}</h1>
+    <p>Ресторан: {{ order.restaurant.name }}</p>
+    <p>Статус: {{ order.get_status_display }}</p>
+    <p>Адрес: {{ order.address }}</p>
+    {% if order.comment %}<p>Комментарий: {{ order.comment }}</p>{% endif %}
+    <p>Создан: {{ order.created_at|date:"d.m.Y H:i" }}</p>
+
+    <table>
+        <tr><th>Блюдо</th><th>Цена</th><th>Кол-во</th><th>Сумма</th></tr>
+        {% for i in order.items.all %}
+            <tr><td>{{ i.dish.name }}</td><td>{{ i.price }} ₽</td><td>{{ i.quantity }}</td><td>{{ i.subtotal }} ₽</td></tr>
+        {% endfor %}
+    </table>
+    <p><b>Итого: {{ order.total }} ₽</b></p>
+</body>
+</html>

@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import ProtectedError
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import DishForm
@@ -60,7 +61,11 @@ def dish_update(request, pk):
 def dish_delete(request, pk):
     dish = get_object_or_404(Dish, pk=pk)
     if request.method == 'POST':
-        dish.delete()                                    # DELETE ... WHERE id = pk
+        try:
+            dish.delete()                                # DELETE ... WHERE id = pk
+        except ProtectedError:
+            messages.error(request, 'Нельзя удалить блюдо: оно есть в заказах.')
+            return redirect('menu:dish_detail', pk=dish.pk)
         messages.success(request, 'Блюдо удалено.')
         return redirect('menu:dish_list')
     return render(request, 'menu/dish_confirm_delete.html', {'dish': dish})
