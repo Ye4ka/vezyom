@@ -16,9 +16,11 @@
     {% if dish.description %}<p>{{ dish.description }}</p>{% endif %}
     <p>Добавлено: {{ dish.created_at|date:"d.m.Y H:i" }}</p>
 
-    <p>
+    {% if user.profile.is_admin %}
+        <p>
         <a href="{% url 'menu:dish_update' dish.pk %}">Изменить</a> |
         <a href="{% url 'menu:dish_delete' dish.pk %}">Удалить</a>
-    </p>
+        </p>
+    {% endif %}
 </body>
 </html>

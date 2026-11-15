@@ -9,7 +9,9 @@
 
     <h1>Каталог блюд</h1>
 
-    <p><a href="{% url 'menu:dish_create' %}">+ Добавить блюдо</a></p>
+    {% if user.profile.is_admin %}
+        <p><a href="{% url 'menu:dish_create' %}">+ Добавить блюдо</a></p>
+    {% endif %}
 
     <form method="get">
         <input type="text" name="q" value="{{ q }}" placeholder="Поиск по названию">
