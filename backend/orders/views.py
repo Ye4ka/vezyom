@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 
 from menu.models import Restaurant
+from .forms import OrderEditForm
 from .models import Order, OrderItem
 
 
@@ -77,3 +79,34 @@ def order_detail(request, pk):
         pk=pk, user=request.user,
     )
     return render(request, 'orders/order_detail.html', {'order': order})
+
+
+@login_required
+def order_update(request, pk):
+    order = get_object_or_404(Order, pk=pk, user=request.user)
+    if order.status != Order.Status.NEW:
+        messages.error(request, 'Изменять можно только новые заказы.')
+        return redirect('orders:order_detail', pk=order.pk)
+
+    if request.method == 'POST':
+        form = OrderEditForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()                                      # UPDATE
+            messages.success(request, 'Заказ обновлён.')
+            return redirect('orders:order_detail', pk=order.pk)
+    else:
+        form = OrderEditForm(instance=order)
+    return render(request, 'orders/order_edit.html', {'form': form, 'order': order})
+
+
+@login_required
+@require_POST
+def order_cancel(request, pk):
+    order = get_object_or_404(Order, pk=pk, user=request.user)
+    if order.status != Order.Status.NEW:
+        messages.error(request, 'Отменить можно только новый заказ.')
+    else:
+        order.status = Order.Status.CANCELED
+        order.save(update_fields=['status'])                 # UPDATE status
+        messages.success(request, f'Заказ №{order.pk} отменён.')
+    return redirect('orders:order_detail', pk=order.pk)

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Изменение заказа — Везём</title></head>
+<body>
+    {% include 'accounts/_nav.html' %}
+    <h1>Заказ №{{ order.pk }}: изменение</h1>
+    <p>Ресторан и состав заказа изменить нельзя, только адрес и комментарий.</p>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+        <a href="{% url 'orders:order_detail' order.pk %}">Отмена</a>
+    </form>
+</body>
+</html>

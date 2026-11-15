@@ -18,5 +18,16 @@
         {% endfor %}
     </table>
     <p><b>Итого: {{ order.total }} ₽</b></p>
+
+    {% if order.status == 'NEW' %}
+        <p>
+            <a href="{% url 'orders:order_update' order.pk %}">Изменить адрес / комментарий</a>
+        </p>
+        <form method="post" action="{% url 'orders:order_cancel' order.pk %}"
+                onsubmit="return confirm('Отменить заказ?')">
+            {% csrf_token %}
+            <button type="submit">Отменить заказ</button>
+        </form>
+    {% endif %}
 </body>
 </html>
