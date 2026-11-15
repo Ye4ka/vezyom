@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Заказы — управление — Везём</title></head>
+<body>
+    {% include 'accounts/_nav.html' %}
+    <h1>Все заказы (администратор)</h1>
+
+    <form method="get">
+        <select name="status">
+            <option value="">Все статусы</option>
+            {% for value, label in statuses %}
+                <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Фильтровать</button>
+        <a href="{% url 'orders:manage_list' %}">Сбросить</a>
+    </form>
+
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>№</th><th>Пользователь</th><th>Ресторан</th><th>Адрес</th>
+            <th>Сумма</th><th>Статус</th><th>Создан</th><th>Действие</th>
+        </tr>
+        {% for o in orders %}
+            <tr>
+                <td>{{ o.pk }}</td>
+                <td>{{ o.user.profile.full_name|default:o.user.username }} ({{ o.user.username }})</td>
+                <td>{{ o.restaurant.name }}</td>
+                <td>{{ o.address }}</td>
+                <td>{{ o.total }} ₽</td>
+                <td>{{ o.get_status_display }}</td>
+                <td>{{ o.created_at|date:"d.m.Y H:i" }}</td>
+                <td>
+                    {% if o.next_statuses %}
+                        <form method="post" action="{% url 'orders:manage_status' o.pk %}">
+                            {% csrf_token %}
+                            <select name="status">
+                                {% for value, label in o.next_statuses %}
+                                    <option value="{{ value }}">{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Применить</button>
+                        </form>
+                    {% else %}—{% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="8">Заказов нет.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

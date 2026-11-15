@@ -1,8 +1,12 @@
 <nav>
     <a href="{% url 'menu:dish_list' %}">Каталог</a> |
     {% if user.is_authenticated %}
-    <a href="{% url 'orders:order_list' %}">Мои заказы</a> |
+        <a href="{% url 'orders:order_list' %}">Мои заказы</a> |
+        {% if user.profile.is_admin %}
+            <a href="{% url 'orders:manage_list' %}">Управление заказами</a> |
+        {% endif %}
         Вы вошли как <b>{{ user.profile.full_name|default:user.username }}</b>
+        {% if user.profile %}({{ user.profile.get_role_display }}){% endif %}
         <form method="post" action="{% url 'accounts:logout' %}" style="display:inline">
             {% csrf_token %}
             <button type="submit">Выйти</button>
@@ -13,6 +17,6 @@
     {% endif %}
 </nav>
 <hr>
-    {% if messages %}
+{% if messages %}
     <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
-    {% endif %}
+{% endif %}
